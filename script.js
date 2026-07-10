@@ -37,7 +37,7 @@ function addVideo(container, path, title) {
   const video = createElement('video', 'memory-video');
   const fallback = createElement('div', 'missing-media');
   fallback.hidden = true;
-  video.src = path;
+  video.src = new URL(path, document.baseURI).href;
   video.controls = true;
   video.playsInline = true;
   video.preload = 'metadata';
