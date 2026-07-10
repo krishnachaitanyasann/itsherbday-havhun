@@ -23,7 +23,7 @@ function addImage(container, path, alt) {
   const img = createElement('img', 'reveal-image');
   const fallback = createElement('div', 'missing-media');
   fallback.hidden = true;
-  img.src = path;
+  img.src = new URL(path, document.baseURI).href;
   img.alt = alt || 'A hidden memory';
   img.loading = 'lazy';
   img.decoding = 'async';
@@ -64,7 +64,7 @@ function renderMemory(memory, index) {
   const backContent = card.querySelector('.back-content');
   const backButton = card.querySelector('.flip-back');
 
-  frontImage.src = memory.image;
+  frontImage.src = new URL(memory.image, document.baseURI).href;
   frontImage.alt = memory.alt || `Memory ${index + 1}`;
   frontImage.addEventListener('error', () => {
     frontImage.hidden = true;
